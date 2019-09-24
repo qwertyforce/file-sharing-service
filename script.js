@@ -42,25 +42,13 @@ function handleDrop(e) {
 let uploadProgress = []
 let progressBar = document.getElementById('progress-bar')
 
-// function initializeProgress(numFiles) {
-//   progressBar.value = 0
-//   uploadProgress = []
-
-//   for(let i = numFiles; i > 0; i--) {
-//     uploadProgress.push(0)
-//   }
-// }
-
-// function updateProgress(fileNumber, percent) {
-//   uploadProgress[fileNumber] = percent
-//   let total = uploadProgress.reduce((tot, curr) => tot + curr, 0) / uploadProgress.length
-//   console.debug('update', fileNumber, percent, total)
-//   progressBar.value = total
-// }
-
 function handleFiles(files) {
+  progressBar.value=0;
   files = [...files]
-
+    const myNode = document.getElementById("preview");
+  while (myNode.firstChild) {
+    myNode.removeChild(myNode.firstChild);
+  }
   // initializeProgress(files.length)
   // files.forEach(uploadFile)
   files.forEach(previewFile)
@@ -87,12 +75,14 @@ function uploadFile(files) {
 
   // Update progress (can be used to show progress indicator)
   xhr.upload.addEventListener("progress", function(e) {
+    progressBar.value =e.loaded * 100.0 / e.total;
     // updateProgress(i, (e.loaded * 100.0 / e.total) || 100)
     console.log(e.loaded * 100.0 / e.total)
   })
 
   xhr.addEventListener('readystatechange', function(e) {
     if (xhr.readyState == 4 && xhr.status == 200) {
+      console.log(xhr.response)
       console.log("Done")
       // updateProgress(i, 100) // <- Add this
     }
