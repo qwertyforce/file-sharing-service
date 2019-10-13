@@ -19,9 +19,10 @@ app.use(fileUpload({
     limits: {
         fileSize: 50 * 1024 * 1024
     },
+    abortOnLimit: true
 }));
 app.disable('x-powered-by');
-const port = 7777;
+const port = 80;
 //  https.createServer({                                      //Uncomment if you want to use https 
 //       key: fs.readFileSync('key.pem'),
 //       cert: fs.readFileSync('cert.pem')
@@ -52,6 +53,7 @@ app.post('/upload', (req, res) => {
     crypto.randomBytes(16, (err, buf) => {
         if (err) throw err;
         let id = buf.toString("base64").replace(/\/|=/g, '');
+        console.log(id);
         var archive = archiver('zip', {zlib: {level: 9}});
         if (!(sampleFile instanceof Array)) {
             sampleFile=[sampleFile]
@@ -76,7 +78,14 @@ app.get('/:id', (req, res) => {
     res.sendFile(__dirname + `/${id}`)
     return
     }
+    
     const file = path.join(__dirname,"download",`${id}.zip`)
     console.log(file)
-    res.download(file);
+    res.download(file,file,function (err) {
+  if (err) {
+   res.sendStatus(404);
+  }
+});  
+
+    
   });

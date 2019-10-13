@@ -67,7 +67,8 @@ function previewFile(file) {
 }
 
 function uploadFile(files) {
-  var url = 'http://ip:7777/upload'
+  var serv='http://files.qwertyforce.ru/'
+  var url = serv+'upload'
   var xhr = new XMLHttpRequest()
   var formData = new FormData()
   xhr.open('POST', url, true)
@@ -83,6 +84,7 @@ function uploadFile(files) {
   xhr.addEventListener('readystatechange', function(e) {
     if (xhr.readyState == 4 && xhr.status == 200) {
       console.log(xhr.response)
+      alert(serv+xhr.response)
       console.log("Done")
       // updateProgress(i, 100) // <- Add this
     }
