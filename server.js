@@ -83,7 +83,7 @@ app.get('/:id', (req, res) => {
     console.log(file)
     res.download(file,file,function (err) {
   if (err) {
-   res.sendStatus(404);
+   return res.sendStatus(404);
   }
 });  
 
