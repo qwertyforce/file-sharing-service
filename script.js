@@ -67,7 +67,7 @@ function previewFile(file) {
 }
 
 function uploadFile(files) {
-  var serv='http://files.qwertyforce.ru/'
+  var serv='https://filesbackend.qwertyforce.ru:8081/'
   var url = serv+'upload'
   var xhr = new XMLHttpRequest()
   var formData = new FormData()

@@ -22,7 +22,7 @@ app.use(fileUpload({
     abortOnLimit: true
 }));
 app.disable('x-powered-by');
-const port = 80;
+const port = 8081;
 //  https.createServer({                                      //Uncomment if you want to use https 
 //       key: fs.readFileSync('key.pem'),
 //       cert: fs.readFileSync('cert.pem')
