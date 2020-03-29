@@ -81,7 +81,7 @@ app.get('/:id', (req, res) => {
     
     const file = path.join(__dirname,"download",`${id}.zip`)
     console.log(file)
-    res.download(file,file,function (err) {
+    res.download(file,function (err) {
   if (err) {
    return res.sendStatus(404);
   }
