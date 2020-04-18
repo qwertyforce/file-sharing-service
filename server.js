@@ -41,7 +41,7 @@ app.use(function(req, res, next) {
 
 
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.html') //You can comment this and try to hide shortener web interface  (serve frontend from another domain for example)
+    res.sendFile(__dirname + '/index.html') //web interface
 })
 
 app.post('/upload', (req, res) => {
